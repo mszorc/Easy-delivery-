@@ -1,32 +1,36 @@
 {
-    "supplier":[
+    "author":[
         {
             "id":"1",
-            "name":"supplier1"
+            "firstName":"firstName1",
+            "lastName":"lastName1"
         },
         {
             "id":"2",
-            "name":"supplier2"
+            "firstName":"firstName2",
+            "lastName":"lastName2"
         }
     ],
-    "product":[
+    "book":[
         {
             "id":"1",
-            "name":"product1"
-        }
-    ],
-    "supplier_product":[
-        {
-            "id":"1",
-            "supplierId":"1",
-            "productId":"1",
-            "amount":"5"
+            "title":"title1"
         },
         {
             "id":"2",
-            "supplierId":"2",
-            "productId":"1",
-            "amount":"10"
+            "title":"title2"
+        }
+    ],
+    "author_book":[
+        {
+            "id":"1",
+            "authorId":"1",
+            "bookId":"1"
+        },
+        {
+            "id":"2",
+            "authorId":"2",
+            "bookId":"1"
         }
     ]
 

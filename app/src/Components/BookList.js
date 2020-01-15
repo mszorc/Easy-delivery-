@@ -3,24 +3,24 @@ import axios from 'axios';
 
 let url = "http://localhost:3000/"
 
-export default class SupplierList extends React.Component {
+export default class BookList extends React.Component {
     state = {
-        suppliers: [], 
+        books: [], 
     };
 
     componentDidMount() {
-        axios.get(url + "supplier")
+        axios.get(url + "book")
         .then (res => {
             console.log(res);
-            this.setState({suppliers: res.data});
+            this.setState({books: res.data});
         })
     }
 
     render() {
         return (
             <ul>
-                {this.state.suppliers.map(function(supplier, id) {
-                return <li key={id}>{supplier.name}</li>
+                {this.state.books.map(function(book, id) {
+                return <li key={id}>{book.title}</li>
                 })}
             </ul>
         )
