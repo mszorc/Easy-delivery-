@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { AddToArray } from "./AuthorList";
-import { CloseModal } from "./AuthorFormModal";
+import { Modal, Button } from "react-bootstrap";
 
 let url = "http://localhost:3000/";
 
@@ -22,46 +22,74 @@ export class AddAuthorForm extends React.Component {
     });
   };
 
-  submitHandler = event => {
-    axios.post(url + "author", {
-      firstName: this.state.firstName,
-      lastName: this.state.lastName
-    });
+  submitHandler = async event => {
+    await axios
+      .post(url + "author", {
+        firstName: this.state.firstName,
+        lastName: this.state.lastName
+      })
+      .then(res => {
+        this.state.id = res.data.id;
+        this.setState(this.state);
+        console.log(this.state.id);
+      });
+    console.log(this.state.id);
     event.preventDefault();
+    console.log(this.state.id);
     AddToArray(this.state);
     this.setState(this.initialState);
-    CloseModal();
   };
 
   render() {
     return (
-      <form onSubmit={this.submitHandler} className="inputForm">
-        <div className="form-group">
-          <label>First name </label>
-          <input
-            type="text"
-            name="firstName"
-            value={this.state.firstName}
-            onChange={this.changeHandler}
-          />
-        </div>
+      <Modal
+        {...this.props}
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+      >
+        <Modal.Header closeButton>
+          <Modal.Title id="contained-modal-title-vcenter">
+            Add new author
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <form onSubmit={this.submitHandler} className="inputForm">
+            <div className="form-group">
+              <label>First name </label>
+              <input
+                type="text"
+                name="firstName"
+                value={this.state.firstName}
+                onChange={this.changeHandler}
+              />
+            </div>
 
-        <div className="form-group">
-          <label>Last name</label>
-          <input
-            type="text"
-            name="lastName"
-            value={this.state.lastName}
-            onChange={this.changeHandler}
-          />
-        </div>
+            <div className="form-group">
+              <label>Last name</label>
+              <input
+                type="text"
+                name="lastName"
+                value={this.state.lastName}
+                onChange={this.changeHandler}
+              />
+            </div>
 
-        <div className="form-group">
-          <button type="submit" className="btn btn-primary">
-            Submit
-          </button>
-        </div>
-      </form>
+            <div className="form-group">
+              <button
+                type="submit"
+                className="btn btn-primary"
+                onClick={this.props.onHide}
+              >
+                Submit
+              </button>
+            </div>
+          </form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button onClick={this.props.onHide}>Close</Button>
+        </Modal.Footer>
+      </Modal>
     );
   }
 }

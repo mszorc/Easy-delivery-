@@ -5,7 +5,7 @@ import NavBar from "./Components/NavBar";
 import "bootstrap/dist/css/bootstrap.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Button } from "react-bootstrap";
-import { AuthorFormModal } from "./Components/AuthorFormModal";
+import { AddAuthorForm } from "./Components/AddAuthorForm";
 
 function App() {
   const [modalShow, setModalShow] = React.useState(false);
@@ -16,14 +16,19 @@ function App() {
           <NavBar />
         </header>
         <Switch>
-          <Route path="/authors" component={AuthorList} />
+          <Route path="/authors">
+            <Button variant="primary" onClick={() => setModalShow(true)}>
+              Add author
+            </Button>
+            <AddAuthorForm
+              show={modalShow}
+              onHide={() => setModalShow(false)}
+            />
+            <AuthorList />
+          </Route>
           <Route path="/books" component={BookList} />
           <Route path="/" exact />
         </Switch>
-        <Button variant="primary" onClick={() => setModalShow(true)}>
-          Launch vertically centered modal
-        </Button>
-        <AuthorFormModal show={modalShow} onHide={() => setModalShow(false)} />
       </div>
     </Router>
   );
