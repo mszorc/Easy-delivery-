@@ -1,19 +1,14 @@
 {
   "author": [
     {
-      "id": "1",
-      "firstName": "firstName1",
-      "lastName": "lastName1"
+      "firstName": "",
+      "lastName": "",
+      "id": 1
     },
     {
       "firstName": "",
       "lastName": "",
-      "id": "Vxt3PK_"
-    },
-    {
-      "firstName": "",
-      "lastName": "",
-      "id": "BR8RWkJ"
+      "id": 2
     }
   ],
   "book": [
