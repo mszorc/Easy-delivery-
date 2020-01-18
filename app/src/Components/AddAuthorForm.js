@@ -9,9 +9,9 @@ export class AddAuthorForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: "",
-      firstName: "",
-      lastName: ""
+      id: props.id,
+      firstName: props.firstName,
+      lastName: props.lastName
     };
     this.initialState = this.state;
   }
@@ -31,11 +31,8 @@ export class AddAuthorForm extends React.Component {
       .then(res => {
         this.state.id = res.data.id;
         this.setState(this.state);
-        console.log(this.state.id);
       });
-    console.log(this.state.id);
     event.preventDefault();
-    console.log(this.state.id);
     AddToArray(this.state);
     this.setState(this.initialState);
   };
@@ -79,7 +76,7 @@ export class AddAuthorForm extends React.Component {
               <button
                 type="submit"
                 className="btn btn-primary"
-                onClick={this.props.onHide}
+                //onClick={this.props.onHide}
               >
                 Submit
               </button>

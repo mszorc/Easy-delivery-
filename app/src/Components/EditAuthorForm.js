@@ -5,12 +5,12 @@ import { Modal, Button } from "react-bootstrap";
 let url = "http://localhost:3000/";
 
 export class EditAuthorForm extends React.Component {
-  constructor(props, author) {
+  constructor(props) {
     super(props);
     this.state = {
-      id: author.id,
-      firstName: author.firstName,
-      lastName: author.lastName
+      id: props.id,
+      firstName: props.firstname,
+      lastName: props.lastname
     };
     this.initialState = this.state;
   }
@@ -26,9 +26,7 @@ export class EditAuthorForm extends React.Component {
       firstName: this.state.firstName,
       lastName: this.state.lastName
     });
-    console.log(this.state.id);
     event.preventDefault();
-    console.log(this.state.id);
     this.setState(this.initialState);
   };
 
@@ -73,7 +71,7 @@ export class EditAuthorForm extends React.Component {
                 className="btn btn-primary"
                 onClick={this.props.onHide}
               >
-                Submit
+                Save
               </button>
             </div>
           </form>

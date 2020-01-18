@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
-import { Table } from "react-bootstrap";
+import { Table, Button } from "react-bootstrap";
+import { EditAuthorForm } from "./EditAuthorForm";
 
 let url = "http://localhost:3000/";
 
@@ -11,15 +12,32 @@ export default class AuthorList extends React.Component {
       authors: []
     };
     this.AddToArray = AddToArray.bind(this);
-    this.DeleteAuthor = DeleteAuthor.bind(this);
+    this.modalShow = {
+      show: false
+    };
   }
 
   async componentDidMount() {
     await axios.get(url + "author").then(res => {
-      console.log(res);
       this.setState({ authors: res.data });
     });
   }
+
+  onRemoveItem = async id => {
+    await axios.delete(url + "author/" + id);
+    this.setState(state => {
+      const authors = state.authors.filter(item => item.id !== id);
+      return {
+        authors
+      };
+    });
+  };
+
+  setModalShow = event => {
+    this.modalShow.show = event;
+    this.setState(this);
+    //this.setModalShow(this.modalShow);
+  };
 
   render() {
     return (
@@ -32,23 +50,34 @@ export default class AuthorList extends React.Component {
           </tr>
         </thead>
         <tbody>
-          {this.state.authors.map(function(author, id) {
-            return (
-              <tr key={id}>
-                <td>{author.id}</td>
-                <td>{author.firstName}</td>
-                <td>{author.lastName}</td>
-                <td>
-                  <button
-                    className="btn btn-primary"
-                    onClick={() => DeleteAuthor(author)}
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-            );
-          })}
+          {this.state.authors.map(author => (
+            <tr key={author.id}>
+              <td>{author.id}</td>
+              <td>{author.firstName}</td>
+              <td>{author.lastName}</td>
+              <td>
+                <button
+                  className="btn btn-primary"
+                  onClick={() => this.onRemoveItem(author.id)}
+                >
+                  Remove
+                </button>
+                <Button
+                  variant="primary"
+                  onClick={() => this.setModalShow(true)}
+                >
+                  Edit
+                </Button>
+                <EditAuthorForm
+                  show={this.modalShow.show}
+                  onHide={() => this.setModalShow(false)}
+                  id={author.id}
+                  firstname={author.firstName}
+                  lastname={author.lastName}
+                />
+              </td>
+            </tr>
+          ))}
         </tbody>
       </Table>
     );
@@ -56,13 +85,10 @@ export default class AuthorList extends React.Component {
 }
 
 export function AddToArray(author) {
-  console.log(author.id);
-  this.state.authors.push(author);
-  this.setState(this);
-}
-
-export async function DeleteAuthor(author) {
-  await axios.delete(url + "author/" + author.id);
-  //this.state.authors.pop(author);
-  //this.setState(this);
+  this.setState(state => {
+    const authors = state.authors.push(author);
+    return {
+      authors
+    };
+  });
 }
