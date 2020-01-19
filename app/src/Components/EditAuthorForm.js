@@ -27,7 +27,7 @@ export class EditAuthorForm extends React.Component {
       lastName: this.state.lastName
     });
     event.preventDefault();
-    this.setState(this.initialState);
+    //this.setState(this.initialState);
   };
 
   render() {
