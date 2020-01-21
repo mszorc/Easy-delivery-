@@ -1,0 +1,27 @@
+body {
+  background-color: #33373a;
+}
+
+nav {
+  display: flex;
+  background-color: #581845;
+}
+
+#main {
+  color: whitesmoke;
+}
+
+.btn-primary {
+  background-color: #581845;
+  border-color: #581845;
+}
+
+.btn-primary:hover {
+  background-color: #662553;
+  border-color: #662553;
+}
+
+.btn-primary:active {
+  background-color: #7e2563 !important;
+  border-color: #7e2563 !important;
+}
