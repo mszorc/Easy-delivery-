@@ -149,16 +149,37 @@ export default class AuthorList extends React.Component {
           onChange={this.handleChange}
           placeholder="Search"
         />
-        <Table striped bordered hover responsive variant="dark">
+        <div id="authors_header">
+          <p id="sort">Sort by:</p>
+          <p
+            id="sort_category"
+            type="text"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            text
+          </p>
+          <div class="dropdown-menu">
+            <p id="id">Id (default)</p>
+            <p id="first_name">First name</p>
+            <p id="last_name">Last name</p>
+          </div>
+        </div>
+        <hr />
+        <Table striped hover responsive variant="dark">
           <thead>
             <tr>
-              <th>id</th>
+              <th>#</th>
               <th>
-                <button onClick={this.onSort("firstName")}>Sort</button>
                 First name
+                <Button value="primary" onClick={this.onSort("firstName")}>
+                  Sort
+                </Button>
               </th>
               <th>Last name</th>
               <th>Books</th>
+              <th>{/* button add author */}</th>
             </tr>
           </thead>
           <tbody>
@@ -173,12 +194,12 @@ export default class AuthorList extends React.Component {
                   ))}
                 </td>
                 <td>
-                  <button
-                    className="btn btn-primary"
+                  <Button
+                    value="primary"
                     onClick={() => this.onRemoveItem(author.id)}
                   >
                     Remove
-                  </button>
+                  </Button>
                   <Button
                     variant="primary"
                     onClick={() => this.setShowModal(author.id)}

@@ -11,17 +11,98 @@ nav {
   color: whitesmoke;
 }
 
+.navbar-nav .nav-link {
+  color: #ffffffb0 !important;
+}
+
+.navbar-nav .nav-link:hover {
+  color: white !important;
+  transition-duration: 0.5s;
+}
+
 .btn-primary {
   background-color: #581845;
   border-color: #581845;
+  margin: 0 10px 0 10px;
 }
 
 .btn-primary:hover {
   background-color: #662553;
   border-color: #662553;
+  transition-duration: 0.3s;
 }
 
 .btn-primary:active {
   background-color: #7e2563 !important;
   border-color: #7e2563 !important;
+}
+
+#authors_header {
+  margin-top: 40px;
+  width: 100%;
+}
+
+#authors_header p {
+  display: inline-block;
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+#sort {
+  font-size: larger;
+  font-weight: 100;
+  padding-right: 1rem;
+}
+
+#sort_category {
+  font-weight: 500;
+  font-size: x-large;
+  color: lightgrey;
+}
+
+#sort_category:hover {
+  color: whitesmoke;
+  transition-duration: 0.5s;
+}
+
+.dropdown-menu {
+  background-color: #282b2e;
+  color: whitesmoke;
+}
+
+.dropdown-menu p {
+  display: block !important;
+}
+
+.dropdown-menu p:hover {
+  background-color: #c700389c;
+  transition-duration: 0.5s;
+}
+
+hr {
+  border: 5px solid #c700389c;
+  border-radius: 0.25rem;
+  margin: 0;
+}
+
+.table-dark.table-striped tbody tr:hover {
+  background-color: #900c3f2f;
+  transition-duration: 0.5s;
+}
+
+.table-dark {
+  margin-top: 40px;
+}
+
+.table-dark td {
+  vertical-align: middle;
+}
+
+.table-dark th:nth-child(1),
+td:nth-child(1) {
+  text-align: center;
+}
+
+.table-dark td:nth-child(5) {
+  text-align: right;
 }

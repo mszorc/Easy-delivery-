@@ -3,6 +3,7 @@ import AuthorList from "./Components/AuthorList";
 import BookList from "./Components/BookList";
 import NavBar from "./Components/NavBar";
 import "bootstrap/dist/css/bootstrap.css";
+import "bootstrap/dist/js/bootstrap.js";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import { AddAuthorForm } from "./Components/AddAuthorForm";
