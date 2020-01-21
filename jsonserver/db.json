@@ -1,36 +1,30 @@
 {
   "author": [
     {
-      "firstName": "abcd",
-      "lastName": "cdex",
+      "firstName": "123",
+      "lastName": "123",
       "id": 1
-    },
-    {
-      "firstName": "bv",
-      "lastName": "",
-      "id": 4
     }
   ],
   "book": [
     {
-      "id": "1",
-      "title": "title1"
+      "title": "title1",
+      "id": 1
     },
     {
-      "id": "2",
-      "title": "title2"
+      "title": "title2",
+      "id": 2
+    },
+    {
+      "title": "title3",
+      "id": 3
     }
   ],
   "author_book": [
     {
-      "id": "1",
-      "authorId": "1",
-      "bookId": "1"
-    },
-    {
-      "id": "2",
-      "authorId": "2",
-      "bookId": "1"
+      "id": 1,
+      "authorId": 1,
+      "bookId":1
     }
   ]
 }

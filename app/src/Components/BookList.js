@@ -10,7 +10,6 @@ export default class BookList extends React.Component {
 
   async componentDidMount() {
     await axios.get(url + "book").then(res => {
-      console.log(res);
       this.setState({ books: res.data });
     });
   }
