@@ -9,8 +9,11 @@ export default class AuthorList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      filter: "",
+      search: "",
       authors: [],
+      books: [],
+      author_books: [],
+      data: [],
       sort: {
         column: null,
         direction: "desc"
@@ -18,15 +21,35 @@ export default class AuthorList extends React.Component {
       showModal: null
     };
     this.AddToArray = AddToArray.bind(this);
+    this.initialState = this.state;
   }
 
   async componentDidMount() {
     await axios.get(url + "author").then(res => {
       this.setState({ authors: res.data });
     });
+    await axios.get(url + "book").then(res => {
+      this.setState({ books: res.data });
+    });
+    await axios.get(url + "author_book").then(res => {
+      this.setState({ author_books: res.data });
+    });
   }
 
   onRemoveItem = async id => {
+    for (let i = 0; i < this.state.data.length; i++) {
+      for (let j = 0; j < this.state.data[i].author_books.length; j++) {
+        if (this.state.data[i].author_books[j].authorId === id) {
+          await axios.delete(
+            url + "author_book/" + this.state.data[i].author_books[j].id
+          );
+        }
+      }
+    }
+    this.state.data.splice(
+      this.state.data.find(x => x.id === id),
+      1
+    );
     await axios.delete(url + "author/" + id);
     this.setState(state => {
       const authors = state.authors.filter(item => item.id !== id);
@@ -45,7 +68,7 @@ export default class AuthorList extends React.Component {
   }
 
   handleChange = event => {
-    this.setState({ filter: event.target.value });
+    this.setState({ search: event.target.value, data: [] });
   };
 
   onSort = column => e => {
@@ -82,22 +105,47 @@ export default class AuthorList extends React.Component {
     });
   };
 
-  render() {
-    const { filter, authors } = this.state;
-    const lowercasedFilter = filter.toLowerCase();
-    const filteredAuthors = authors.filter(item => {
+  prepareData() {
+    const { search, authors, books, author_books, data } = this.state;
+    const lowercasedSearch = search.toLowerCase();
+    console.log(lowercasedSearch);
+    const searchedAuthors = authors.filter(item => {
       return Object.keys(item).some(key =>
         item[key]
           .toString()
           .toLowerCase()
-          .includes(lowercasedFilter)
+          .includes(lowercasedSearch)
       );
     });
 
+    for (let i = 0; i < searchedAuthors.length; i++) {
+      data[i] = {
+        id: searchedAuthors[i].id,
+        firstName: searchedAuthors[i].firstName,
+        lastName: searchedAuthors[i].lastName,
+        books: [],
+        author_books: []
+      };
+    }
+
+    for (let i = 0; i < data.length; i++) {
+      const author_booksFiltered = author_books.filter(
+        x => x.authorId === data[i].id
+      );
+      for (let k = 0; k < author_booksFiltered.length; k++) {
+        var book = books.find(x => x.id === author_booksFiltered[k].bookId);
+        data[i].books.push(book);
+        data[i].author_books.push(author_booksFiltered[k]);
+      }
+    }
+  }
+
+  render() {
+    this.prepareData();
     return (
       <>
         <input
-          value={filter}
+          value={this.state.search}
           onChange={this.handleChange}
           placeholder="Search"
         />
@@ -110,14 +158,20 @@ export default class AuthorList extends React.Component {
                 First name
               </th>
               <th>Last name</th>
+              <th>Books</th>
             </tr>
           </thead>
           <tbody>
-            {filteredAuthors.map(author => (
+            {this.state.data.map(author => (
               <tr key={author.id}>
                 <td>{author.id}</td>
                 <td>{author.firstName}</td>
                 <td>{author.lastName}</td>
+                <td>
+                  {author.books.map(book => (
+                    <li key={book.id}>{book.title}</li>
+                  ))}
+                </td>
                 <td>
                   <button
                     className="btn btn-primary"

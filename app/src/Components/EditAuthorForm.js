@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { Modal, Button } from "react-bootstrap";
+import AsyncSelect from "react-select";
 
 let url = "http://localhost:3000/";
 
@@ -10,9 +11,16 @@ export class EditAuthorForm extends React.Component {
     this.state = {
       id: props.id,
       firstName: props.firstname,
-      lastName: props.lastname
+      lastName: props.lastname,
+      books: [],
+      booksMapped: []
     };
-    this.initialState = this.state;
+  }
+
+  async componentDidMount() {
+    await axios.get(url + "book").then(res => {
+      this.setState({ books: res.data });
+    });
   }
 
   changeHandler = event => {
@@ -22,12 +30,19 @@ export class EditAuthorForm extends React.Component {
   };
 
   submitHandler = async event => {
+    event.preventDefault();
+    var that = this;
+    for (let i = 0; i < this.state.books.length; i++) {
+      await axios.post(url + "author_book", {
+        bookId: that.state.books[i].id,
+        authorId: that.state.id
+      });
+    }
+
     await axios.put(url + "author/" + this.state.id, {
       firstName: this.state.firstName,
       lastName: this.state.lastName
     });
-    event.preventDefault();
-    //this.setState(this.initialState);
   };
 
   render() {
@@ -63,6 +78,11 @@ export class EditAuthorForm extends React.Component {
                 value={this.state.lastName}
                 onChange={this.changeHandler}
               />
+            </div>
+
+            <div className="form-group">
+              <label>Books</label>
+              <AsyncSelect options={this.state.books} isMulti />
             </div>
 
             <div className="form-group">
