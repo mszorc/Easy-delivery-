@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { Table, Button } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import { EditAuthorForm } from "./EditAuthorForm";
 import { AddAuthorForm } from "./AddAuthorForm";
 
@@ -181,28 +181,94 @@ export default class AuthorList extends React.Component {
           onChange={this.handleChange}
           placeholder="Search"
         />
-        <Table striped bordered hover responsive variant="dark">
-          <thead>
-            <tr>
-              <th>id</th>
-              <th>Image</th>
-              <th>
-                <button onClick={this.onSort("firstName")}>Sort</button>
-                First name
-              </th>
-              <th>
-                <button onClick={this.onSort("firstName")}>Sort</button>Last
-                name
-              </th>
-              <th>
-                <button onClick={this.onSort("firstName")}>Sort</button>Date of
-                birth
-              </th>
-              <th>Books</th>
-            </tr>
-          </thead>
-          <tbody>
-            {this.state.data.map(author => (
+
+        <div className="container" id="header">
+          <div className="row justify-content-md-around">
+            <div className="col-12 col-md-3 order-md-1">
+              <Button id="add_author" variant="primary">
+                Add author
+              </Button>
+            </div>
+            <div className="col-12 col-md-3 order-md-2">
+              <div id="sort">
+                <Button
+                  id="sort_button"
+                  variant="primary"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  Sort by:
+                </Button>
+                <div className="dropdown-menu">
+                  <p id="id">Id (default)</p>
+                  <p id="first_name">First name</p>
+                  <p id="last_name">Last name</p>
+                </div>
+              </div>
+            </div>
+            <div className="col-12 col-md-3 order-md-3">
+              <input
+                id="searchbox"
+                type="text"
+                placeholder="Filter"
+                aria-label="Filter"
+              />
+            </div>
+          </div>
+        </div>
+        <hr />
+        <div className="row justify-content-around" id="record_container">
+          {this.state.data.map(author => (
+            <div className="container col-12 col-md-6 col-lg-4" key={author.id}>
+              <div className="record row">
+                <div className="col-12">
+                  {author.id}
+                  {author.firstName}
+                  {author.lastName}
+                </div>
+                <div className="image col-12 col-sm-auto">
+                  <img
+                    src="https://www.film.gildia.pl/_n_/literatura/tworcy/andrzej_sapkowski/pani_jeziora/okladka-200.jpg"
+                    alt="Author"
+                  ></img>
+                </div>
+                <div className="col-12 col-sm">
+                  {author.books.map(book => (
+                    <li key={book.id}>{book.title}</li>
+                  ))}
+                </div>
+                <div className="buttons col-12">
+                  <Button
+                    className="left"
+                    variant="primary"
+                    onClick={() => this.setShowModal(author.id)}
+                  >
+                    Edit
+                  </Button>
+                  <Button
+                    className="right"
+                    value="primary"
+                    onClick={() => this.onRemoveItem(author.id)}
+                  >
+                    Remove
+                  </Button>
+                  <EditAuthorForm
+                    show={this.state.showModal === "modal" + author.id}
+                    onHide={() => this.setShowModal(0)}
+                    id={author.id}
+                    firstname={author.firstName}
+                    lastname={author.lastName}
+                  />
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+        {/* <Table striped hover responsive variant="dark">
+        <tbody>
+        {this.state.data.map(author => (
+>>>>>>> Pawel
               <tr key={author.id}>
                 <td>{author.id}</td>
                 <td>
@@ -217,12 +283,12 @@ export default class AuthorList extends React.Component {
                   ))}
                 </td>
                 <td>
-                  <button
-                    className="btn btn-primary"
+                  <Button
+                    value="primary"
                     onClick={() => this.onRemoveItem(author.id)}
                   >
                     Remove
-                  </button>
+                  </Button>
                   <Button
                     variant="primary"
                     onClick={() => this.setShowModal(author.id)}
@@ -242,7 +308,7 @@ export default class AuthorList extends React.Component {
               </tr>
             ))}
           </tbody>
-        </Table>
+        </Table> */}
       </>
     );
   }

@@ -3,8 +3,8 @@
     {
       "firstName": "1s",
       "lastName": "2",
-      "dateOfBirth": "2020-01-02",
-      "imageUrl": "1da",
+      "dateOfBirth": "2020-01-01",
+      "imageUrl": "sadasda",
       "id": 1
     },
     {
@@ -39,6 +39,11 @@
       "bookId": 2,
       "authorId": 2,
       "id": 3
+    },
+    {
+      "bookId": 1,
+      "authorId": 1,
+      "id": 4
     }
   ]
 }

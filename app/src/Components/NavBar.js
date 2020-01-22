@@ -8,7 +8,7 @@ export default class NavBar extends React.Component {
         className="navbar sticky-top navbar-expand-sm navbar-toggleable-sm navbar-dark"
         role="navigation"
       >
-        <div className="container-fluid">
+        <div className="container">
           <div className="navbar-header">
             <a className="navbar-brand" href="/">
               Easy delivery
