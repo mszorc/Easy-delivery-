@@ -2,7 +2,6 @@ import React from "react";
 import axios from "axios";
 import { Modal, Button } from "react-bootstrap";
 import Select from "react-select";
-import { EditInArray } from "./AuthorList";
 
 let url = "http://localhost:3000/";
 
@@ -57,7 +56,7 @@ export class EditAuthorForm extends React.Component {
     console.log(this.state.booksIntersect);
 
     await axios.delete(url + "author_book/" + author_book.id);
-    this.setState(this);
+    //this.setState(this);
   }
 
   async getBooks() {

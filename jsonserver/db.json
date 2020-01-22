@@ -13,20 +13,30 @@
       "dateOfBirth": "2020-01-01",
       "imageUrl": "ewqeq",
       "id": 3
+    },
+    {
+      "firstName": "wqeq",
+      "lastName": "ewqeq",
+      "dateOfBirth": "2020-01-01",
+      "imageUrl": "wsq",
+      "id": 4
     }
   ],
   "book": [
     {
-      "title": "title1",
+      "title": "das",
+      "imageUrl": "abc",
       "id": 1
     },
     {
       "title": "title2",
-      "id": 2
+      "id": 2,
+      "imageUrl": "abc"
     },
     {
       "title": "title3",
-      "id": 3
+      "id": 3,
+      "imageUrl": "abc"
     }
   ],
   "author_book": [
@@ -39,11 +49,6 @@
       "bookId": 1,
       "authorId": 2,
       "id": 9
-    },
-    {
-      "bookId": 3,
-      "authorId": 2,
-      "id": 10
     }
   ]
 }
