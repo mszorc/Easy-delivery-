@@ -247,10 +247,12 @@ export default class AuthorList extends React.Component {
           {this.state.data.map(author => (
             <div className="container col-12 col-md-6 col-lg-4" key={author.id}>
               <div className="record row">
-                <div className="col-12">
-                  {author.id}
-                  {author.firstName}
-                  {author.lastName}
+                <div className="col-12 row">
+                  <div className="record_id col-2">#{author.id}</div>
+                  <div className="record_name col-auto">{author.firstName}</div>
+                  <div className="record_surname col-auto">
+                    {author.lastName}
+                  </div>
                 </div>
                 <div className="image col-12 col-sm-auto">
                   <img
@@ -260,7 +262,9 @@ export default class AuthorList extends React.Component {
                 </div>
                 <div className="col-12 col-sm">
                   {author.books.map(book => (
-                    <li key={book.id}>{book.title}</li>
+                    <p className="book_list" key={book.id}>
+                      {book.title}
+                    </p>
                   ))}
                 </div>
                 <div className="buttons col-12">
