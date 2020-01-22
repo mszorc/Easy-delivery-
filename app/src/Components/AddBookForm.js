@@ -66,31 +66,29 @@ export class AddBookForm extends React.Component {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <form onSubmit={this.submitHandler} className="inputForm">
-            <div className="form-group">
+          <form onSubmit={this.submitHandler} className="inputForm list-group">
+            <div className="form-group list-group-item">
               <label>Title </label>
               <input
                 type="text"
                 name="title"
+                className="form-control"
                 value={this.state.title}
                 onChange={this.changeHandler}
               />
-            </div>
 
-            <div className="form-group">
               <label>Image url</label>
               <input
                 type="text"
                 name="imageUrl"
+                className="form-control"
                 value={this.state.imageUrl}
                 onChange={this.changeHandler}
               />
-            </div>
 
-            <div className="form-group">
               <button
                 type="submit"
-                className="btn btn-primary"
+                className="btn btn-primary mt-2"
                 //onClick={this.props.onHide}
               >
                 Submit
