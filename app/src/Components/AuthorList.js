@@ -255,60 +255,20 @@ export default class AuthorList extends React.Component {
                   </Button>
                   <EditAuthorForm
                     show={this.state.showModal === "modal" + author.id}
-                    onHide={() => this.setShowModal(0)}
-                    id={author.id}
-                    firstname={author.firstName}
-                    lastname={author.lastName}
-                  />
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-        {/* <Table striped hover responsive variant="dark">
-        <tbody>
-        {this.state.data.map(author => (
->>>>>>> Pawel
-              <tr key={author.id}>
-                <td>{author.id}</td>
-                <td>
-                  <img src={author.imageUrl} alt={author.imageUrl} />
-                </td>
-                <td>{author.firstName}</td>
-                <td>{author.lastName}</td>
-                <td>{author.dateOfBirth}</td>
-                <td>
-                  {author.books.map(book => (
-                    <li key={book.id}>{book.title}</li>
-                  ))}
-                </td>
-                <td>
-                  <Button
-                    value="primary"
-                    onClick={() => this.onRemoveItem(author.id)}
-                  >
-                    Remove
-                  </Button>
-                  <Button
-                    variant="primary"
-                    onClick={() => this.setShowModal(author.id)}
-                  >
-                    Edit
-                  </Button>
-                  <EditAuthorForm
-                    show={this.state.showModal === "modal" + author.id}
-                    onHide={() => this.setShowModal(0)}
+                    onHide={() => {
+                      this.setShowModal(0);
+                    }}
                     id={author.id}
                     firstname={author.firstName}
                     lastname={author.lastName}
                     dateOfBirth={author.dateOfBirth}
                     imageUrl={author.imageUrl}
                   />
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </Table> */}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
       </>
     );
   }
@@ -324,26 +284,5 @@ export function AddToArray(author) {
 }
 
 export function EditInArray(author) {
-  // this.setState(state => {
-  //   var data = state.data.find(x => x.id === author.id);
-  //   data = {
-  //     firstName: author.firstName,
-  //     lastName: author.lastName,
-  //     dateOfBirth: author.dateOfBirth,
-  //     imageUrl: author.imageUrl
-  //     //   books: books
-  //   };
-  //   return {
-  //     data
-  //   };
-  // });
+  this.setState(this);
 }
-
-// export function RemoveBooksFromArray(author) {
-//   this.setState(state => {
-//     const newBooks = (state.authors[author.id].books = author.booksIntersect);
-//     return {
-//       newBooks
-//     };
-//   });
-// }

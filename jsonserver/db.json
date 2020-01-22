@@ -1,18 +1,18 @@
 {
   "author": [
     {
-      "firstName": "1s",
-      "lastName": "2",
+      "firstName": "11",
+      "lastName": "1",
       "dateOfBirth": "2020-01-01",
-      "imageUrl": "sadasda",
-      "id": 1
+      "imageUrl": "dsada",
+      "id": 2
     },
     {
-      "firstName": "1",
-      "lastName": "1",
-      "dateOfBirth": "0001-01-01",
-      "imageUrl": "1",
-      "id": 2
+      "firstName": "2das",
+      "lastName": "2",
+      "dateOfBirth": "2020-01-01",
+      "imageUrl": "ewqeq",
+      "id": 3
     }
   ],
   "book": [
@@ -32,18 +32,23 @@
   "author_book": [
     {
       "bookId": 1,
+      "authorId": 3,
+      "id": 8
+    },
+    {
+      "bookId": 1,
       "authorId": 2,
-      "id": 1
+      "id": 9
     },
     {
       "bookId": 2,
       "authorId": 2,
-      "id": 3
+      "id": 10
     },
     {
-      "bookId": 1,
-      "authorId": 1,
-      "id": 4
+      "bookId": 3,
+      "authorId": 2,
+      "id": 11
     }
   ]
 }

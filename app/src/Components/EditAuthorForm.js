@@ -43,19 +43,21 @@ export class EditAuthorForm extends React.Component {
   }
 
   async deleteBook(id) {
-    //event.preventDefault();
     let author_book = this.state.author_books.find(
       x => x.bookId === id && x.authorId === this.state.id
     );
+    console.log(author_book);
     this.state.booksDiff.push(this.state.booksIntersect.find(x => x.id === id));
+    console.log(this.state.booksIntersect.find(x => x.id === id));
+    console.log(this.state.booksIntersect);
     this.state.booksIntersect.splice(
-      this.state.booksIntersect.find(x => x.id === id),
+      this.state.booksIntersect.findIndex(x => x.id === id),
       1
     );
+    console.log(this.state.booksIntersect);
 
     await axios.delete(url + "author_book/" + author_book.id);
     this.setState(this);
-    //RemoveBooksFromArray(this.state);
   }
 
   async getBooks() {
@@ -99,7 +101,7 @@ export class EditAuthorForm extends React.Component {
   };
 
   submitHandler = async event => {
-    event.preventDefault();
+    console.log(this.state.booksToPut);
     if (this.validation()) {
       var that = this;
       for (let i = 0; i < this.state.booksToPut.length; i++) {
@@ -115,8 +117,10 @@ export class EditAuthorForm extends React.Component {
         dateOfBirth: this.state.dateOfBirth,
         imageUrl: this.state.imageUrl
       });
-      EditInArray(this.state);
+      //EditInArray(this.state);
+      this.setState(this);
     }
+    event.preventDefault();
   };
 
   render() {
@@ -192,7 +196,6 @@ export class EditAuthorForm extends React.Component {
                 onClick={this.changeHandler}
                 options={options}
                 onChange={(opt, meta) => {
-                  //  this.state.booksToPut = [];
                   if (meta.action === "select-option") {
                     console.log(meta);
                     this.state.booksToPut.push({
