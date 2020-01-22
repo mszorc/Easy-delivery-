@@ -1,5 +1,5 @@
 body {
-  background-color: #33373a;
+  background-color: #333536;
 }
 
 nav {
@@ -96,6 +96,7 @@ nav {
 
 .dropdown-menu p {
   display: block !important;
+  padding: 0.25rem 0;
 }
 
 .dropdown-menu p:hover {
@@ -114,7 +115,7 @@ nav {
   text-align: center;
   border: 0;
   border-bottom: 2px solid gray;
-  background-color: #33373a;
+  background-color: #333536;
   padding: 0.1rem 1rem;
   margin: 0 0 0.5rem 0;
 }
@@ -188,6 +189,36 @@ td:nth-child(1) {
   width: calc(100% / 2 - 0.5rem);
 }
 
+.record div {
+  margin-bottom: 0.25rem;
+  font-size: x-large;
+}
+
+.record_id {
+  display: inline;
+  font-size: large !important;
+  padding-top: 0.3rem;
+  font-weight: 100;
+}
+
+.record_name {
+  display: inline;
+  text-align: right;
+  font-weight: 100;
+}
+
+.record_surname {
+  display: inline;
+  text-align: left;
+  font-weight: 500;
+}
+
+.book_list {
+  font-size: large;
+  text-align: left;
+  margin-bottom: 0.25rem;
+}
+
 .image {
   text-align: center;
 }
@@ -196,7 +227,7 @@ td:nth-child(1) {
   height: 15rem;
 }
 
-footer {
+/* footer {
   display: flex;
   background-color: #581845;
   position: static;
@@ -205,4 +236,4 @@ footer {
   width: 100%;
   color: gray;
   text-align: center;
-}
+} */
