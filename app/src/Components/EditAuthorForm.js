@@ -141,86 +141,83 @@ export class EditAuthorForm extends React.Component {
         </Modal.Header>
         <Modal.Body>
           <form onSubmit={this.submitHandler} className="inputForm">
-            <div className="form-group">
-              <label>First name </label>
-              <input
-                type="text"
-                name="firstName"
-                value={this.state.firstName}
-                onChange={this.changeHandler}
-              />
-            </div>
+            <div className="form-group list-group-item">
+              <div className="form-group">
+                <label>First name </label>
+                <input
+                  type="text"
+                  name="firstName"
+                  className="form-control"
+                  value={this.state.firstName}
+                  onChange={this.changeHandler}
+                />
+                <label>Last name</label>
+                <input
+                  type="text"
+                  name="lastName"
+                  className="form-control"
+                  value={this.state.lastName}
+                  onChange={this.changeHandler}
+                />
+                <label>Date of birth</label>
+                <input
+                  type="date"
+                  name="dateOfBirth"
+                  className="form-control"
+                  value={this.state.dateOfBirth}
+                  onChange={this.changeHandler}
+                />
+                <label>Image url</label>
+                <input
+                  type="text"
+                  name="imageUrl"
+                  className="form-control"
+                  value={this.state.imageUrl}
+                  onChange={this.changeHandler}
+                />
+                <label>Books</label>
+                {this.state.booksIntersect.map(book => (
+                  <li key={book.id}>
+                    {book.title}
+                    <button
+                      className="btn btn-primary p-0 pl-2 pr-2 m-2"
+                      onClick={() => this.deleteBook(book.id)}
+                    >
+                      &times;
+                    </button>
+                  </li>
+                ))}
+                <Select
+                  onClick={this.changeHandler}
+                  options={options}
+                  onChange={(opt, meta) => {
+                    if (meta.action === "select-option") {
+                      console.log(meta);
+                      this.state.booksToPut.push({
+                        id: meta.option.value,
+                        title: meta.option.label
+                      });
+                      console.log(this.state.booksToPut[0]);
+                    }
+                    if (meta.action === "remove-value") {
+                      this.state.booksToPut.splice(
+                        this.state.booksToPut.find(
+                          x => x.id === meta.option.value
+                        ),
+                        1
+                      );
+                    }
+                    console.log(this.state.booksToPut);
+                  }}
+                  isMulti
+                />
+              </div>
 
-            <div className="form-group">
-              <label>Last name</label>
-              <input
-                type="text"
-                name="lastName"
-                value={this.state.lastName}
-                onChange={this.changeHandler}
-              />
-            </div>
-
-            <div className="form-group">
-              <label>Date of birth</label>
-              <input
-                type="date"
-                name="dateOfBirth"
-                value={this.state.dateOfBirth}
-                onChange={this.changeHandler}
-              />
-            </div>
-
-            <div className="form-group">
-              <label>Image url</label>
-              <input
-                type="text"
-                name="imageUrl"
-                value={this.state.imageUrl}
-                onChange={this.changeHandler}
-              />
-            </div>
-
-            <div className="form-group">
-              <label>Books</label>
-              {this.state.booksIntersect.map(book => (
-                <div key={book.id}>
-                  {book.title}
-                  <button onClick={() => this.deleteBook(book.id)}>
-                    &times;
-                  </button>
-                </div>
-              ))}
-              <Select
-                onClick={this.changeHandler}
-                options={options}
-                onChange={(opt, meta) => {
-                  if (meta.action === "select-option") {
-                    console.log(meta);
-                    this.state.booksToPut.push({
-                      id: meta.option.value,
-                      title: meta.option.label
-                    });
-                    console.log(this.state.booksToPut[0]);
-                  }
-                  if (meta.action === "remove-value") {
-                    this.state.booksToPut.splice(
-                      this.state.booksToPut.find(
-                        x => x.id === meta.option.value
-                      ),
-                      1
-                    );
-                  }
-                  console.log(this.state.booksToPut);
-                }}
-                isMulti
-              />
-            </div>
-
-            <div className="form-group">
-              <button type="submit" className="btn btn-primary">
-                Save
-              </button>
+              <div className="form-group">
+                <button type="submit" className="btn btn-primary">
+                  Save
+                </button>
+              </div>
             </div>
           </form>
         </Modal.Body>

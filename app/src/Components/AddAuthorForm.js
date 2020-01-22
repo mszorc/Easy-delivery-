@@ -78,51 +78,43 @@ export class AddAuthorForm extends React.Component {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <form onSubmit={this.submitHandler} className="inputForm">
-            <div className="form-group">
+          <form onSubmit={this.submitHandler} className="inputForm list-group">
+            <div className="form-group list-group-item">
               <label>First name </label>
               <input
                 type="text"
                 name="firstName"
+                className="form-control"
                 value={this.state.firstName}
                 onChange={this.changeHandler}
               />
-            </div>
-
-            <div className="form-group">
               <label>Last name</label>
               <input
                 type="text"
                 name="lastName"
+                className="form-control"
                 value={this.state.lastName}
                 onChange={this.changeHandler}
               />
-            </div>
-
-            <div className="form-group">
               <label>Date of birth</label>
               <input
                 type="date"
                 name="dateOfBirth"
+                className="form-control"
                 value={this.state.dateOfBirth}
                 onChange={this.changeHandler}
               />
-            </div>
-
-            <div className="form-group">
               <label>Image url</label>
               <input
                 type="text"
                 name="imageUrl"
+                className="form-control"
                 value={this.state.imageUrl}
                 onChange={this.changeHandler}
               />
-            </div>
-
-            <div className="form-group">
               <button
                 type="submit"
-                className="btn btn-primary"
+                className="btn btn-primary mt-2"
                 //onClick={this.props.onHide}
               >
                 Submit
