@@ -11,7 +11,9 @@ export class AddAuthorForm extends React.Component {
     this.state = {
       id: "",
       firstName: "",
-      lastName: ""
+      lastName: "",
+      dateOfBirth: "",
+      imageUrl: ""
     };
     this.initialState = this.state;
   }
@@ -23,19 +25,44 @@ export class AddAuthorForm extends React.Component {
   };
 
   submitHandler = async event => {
-    await axios
-      .post(url + "author", {
-        firstName: this.state.firstName,
-        lastName: this.state.lastName
-      })
-      .then(res => {
-        this.state.id = res.data.id;
-        this.setState(this.state);
-      });
+    if (this.validation()) {
+      await axios
+        .post(url + "author", {
+          firstName: this.state.firstName,
+          lastName: this.state.lastName,
+          dateOfBirth: this.state.dateOfBirth,
+          imageUrl: this.state.imageUrl
+        })
+        .then(res => {
+          this.state.id = res.data.id;
+          this.setState(this.state);
+        });
+      AddToArray(this.state);
+      this.setState(this.initialState);
+    }
+
     event.preventDefault();
-    AddToArray(this.state);
-    this.setState(this.initialState);
   };
+
+  validation() {
+    if (!this.state.firstName) {
+      alert("Enter first name of an author.");
+      return false;
+    }
+    if (!this.state.lastName) {
+      alert("Enter last name of an author.");
+      return false;
+    }
+    if (!this.state.dateOfBirth) {
+      alert("Enter date of birth of an author.");
+      return false;
+    }
+    if (!this.state.imageUrl) {
+      alert("Enter image url of an author.");
+      return false;
+    }
+    return true;
+  }
 
   render() {
     return (
@@ -73,10 +100,30 @@ export class AddAuthorForm extends React.Component {
             </div>
 
             <div className="form-group">
+              <label>Date of birth</label>
+              <input
+                type="date"
+                name="dateOfBirth"
+                value={this.state.dateOfBirth}
+                onChange={this.changeHandler}
+              />
+            </div>
+
+            <div className="form-group">
+              <label>Image url</label>
+              <input
+                type="text"
+                name="imageUrl"
+                value={this.state.imageUrl}
+                onChange={this.changeHandler}
+              />
+            </div>
+
+            <div className="form-group">
               <button
                 type="submit"
                 className="btn btn-primary"
-                onClick={this.props.onHide}
+                //onClick={this.props.onHide}
               >
                 Submit
               </button>

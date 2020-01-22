@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import { Table, Button } from "react-bootstrap";
 import { EditAuthorForm } from "./EditAuthorForm";
+import { AddAuthorForm } from "./AddAuthorForm";
 
 let url = "http://localhost:3000/";
 
@@ -20,7 +21,9 @@ export default class AuthorList extends React.Component {
       },
       showModal: null
     };
+    //this.RemoveBooksFromArray = RemoveBooksFromArray.bind(this);
     this.AddToArray = AddToArray.bind(this);
+    this.EditInArray = EditInArray.bind(this);
     this.initialState = this.state;
   }
 
@@ -59,28 +62,37 @@ export default class AuthorList extends React.Component {
     });
   };
 
-  setShowModal(id, event) {
-    let st = null;
-    if (id > 0) {
-      st = "modal" + id;
-    }
-    this.setState({ showModal: st });
-  }
-
-  handleChange = event => {
-    this.setState({ search: event.target.value, data: [] });
-  };
-
   onSort = column => e => {
     const direction = this.state.sort.column
       ? this.state.sort.direction === "asc"
         ? "desc"
         : "asc"
       : "desc";
-    const sortedData = this.state.authors.sort((a, b) => {
-      if (column === "firstName") {
-        const nameA = a.firstName.toUpperCase(); // ignore upper and lowercase
-        const nameB = b.firstName.toUpperCase(); // ignore upper and lowercase
+    const sortedData = this.state.data.sort((a, b) => {
+      if (
+        column === "firstName" ||
+        column === "lastName" ||
+        column === "dateOfBirth" ||
+        column === "id"
+      ) {
+        var nameA;
+        var nameB;
+        if (column === "id") {
+          nameA = a.id; // ignore upper and lowercase
+          nameB = b.id; // ignore upper and lowercase
+        }
+        if (column === "firstName") {
+          nameA = a.firstName.toUpperCase(); // ignore upper and lowercase
+          nameB = b.firstName.toUpperCase(); // ignore upper and lowercase
+        }
+        if (column === "lastName") {
+          nameA = a.lastName.toUpperCase(); // ignore upper and lowercase
+          nameB = b.lastName.toUpperCase(); // ignore upper and lowercase
+        }
+        if (column === "dateOfBirth") {
+          nameA = a.dateOfBirth.toUpperCase(); // ignore upper and lowercase
+          nameB = b.dateOfBirth.toUpperCase(); // ignore upper and lowercase
+        }
         if (nameA < nameB) {
           return -1;
         }
@@ -105,10 +117,21 @@ export default class AuthorList extends React.Component {
     });
   };
 
+  setShowModal(id, event) {
+    let st = null;
+    if (id => -1) {
+      st = "modal" + id;
+    }
+    this.setState({ showModal: st });
+  }
+
+  handleChange = event => {
+    this.setState({ search: event.target.value, data: [] });
+  };
+
   prepareData() {
     const { search, authors, books, author_books, data } = this.state;
     const lowercasedSearch = search.toLowerCase();
-    console.log(lowercasedSearch);
     const searchedAuthors = authors.filter(item => {
       return Object.keys(item).some(key =>
         item[key]
@@ -123,6 +146,8 @@ export default class AuthorList extends React.Component {
         id: searchedAuthors[i].id,
         firstName: searchedAuthors[i].firstName,
         lastName: searchedAuthors[i].lastName,
+        dateOfBirth: searchedAuthors[i].dateOfBirth,
+        imageUrl: searchedAuthors[i].imageUrl,
         books: [],
         author_books: []
       };
@@ -144,6 +169,13 @@ export default class AuthorList extends React.Component {
     this.prepareData();
     return (
       <>
+        <Button variant="primary" onClick={() => this.setShowModal(-1)}>
+          Add author
+        </Button>
+        <AddAuthorForm
+          show={this.state.showModal === "modal" + -1}
+          onHide={() => this.setShowModal(0)}
+        />
         <input
           value={this.state.search}
           onChange={this.handleChange}
@@ -153,11 +185,19 @@ export default class AuthorList extends React.Component {
           <thead>
             <tr>
               <th>id</th>
+              <th>Image</th>
               <th>
                 <button onClick={this.onSort("firstName")}>Sort</button>
                 First name
               </th>
-              <th>Last name</th>
+              <th>
+                <button onClick={this.onSort("firstName")}>Sort</button>Last
+                name
+              </th>
+              <th>
+                <button onClick={this.onSort("firstName")}>Sort</button>Date of
+                birth
+              </th>
               <th>Books</th>
             </tr>
           </thead>
@@ -165,8 +205,12 @@ export default class AuthorList extends React.Component {
             {this.state.data.map(author => (
               <tr key={author.id}>
                 <td>{author.id}</td>
+                <td>
+                  <img src={author.imageUrl} alt={author.imageUrl} />
+                </td>
                 <td>{author.firstName}</td>
                 <td>{author.lastName}</td>
+                <td>{author.dateOfBirth}</td>
                 <td>
                   {author.books.map(book => (
                     <li key={book.id}>{book.title}</li>
@@ -191,6 +235,8 @@ export default class AuthorList extends React.Component {
                     id={author.id}
                     firstname={author.firstName}
                     lastname={author.lastName}
+                    dateOfBirth={author.dateOfBirth}
+                    imageUrl={author.imageUrl}
                   />
                 </td>
               </tr>
@@ -210,3 +256,28 @@ export function AddToArray(author) {
     };
   });
 }
+
+export function EditInArray(author) {
+  // this.setState(state => {
+  //   var data = state.data.find(x => x.id === author.id);
+  //   data = {
+  //     firstName: author.firstName,
+  //     lastName: author.lastName,
+  //     dateOfBirth: author.dateOfBirth,
+  //     imageUrl: author.imageUrl
+  //     //   books: books
+  //   };
+  //   return {
+  //     data
+  //   };
+  // });
+}
+
+// export function RemoveBooksFromArray(author) {
+//   this.setState(state => {
+//     const newBooks = (state.authors[author.id].books = author.booksIntersect);
+//     return {
+//       newBooks
+//     };
+//   });
+// }

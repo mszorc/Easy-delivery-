@@ -1,9 +1,18 @@
 {
   "author": [
     {
-      "firstName": "123",
-      "lastName": "123",
+      "firstName": "1s",
+      "lastName": "2",
+      "dateOfBirth": "2020-01-02",
+      "imageUrl": "1da",
       "id": 1
+    },
+    {
+      "firstName": "1",
+      "lastName": "1",
+      "dateOfBirth": "0001-01-01",
+      "imageUrl": "1",
+      "id": 2
     }
   ],
   "book": [
@@ -22,9 +31,14 @@
   ],
   "author_book": [
     {
-      "id": 1,
-      "authorId": 1,
-      "bookId":1
+      "bookId": 1,
+      "authorId": 2,
+      "id": 1
+    },
+    {
+      "bookId": 2,
+      "authorId": 2,
+      "id": 3
     }
   ]
 }
