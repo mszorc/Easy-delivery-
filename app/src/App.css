@@ -37,35 +37,42 @@ nav {
   border-color: #7e2563 !important;
 }
 
-#authors_header {
+#header {
   margin-top: 40px;
   width: 100%;
 }
 
-#authors_header p {
+#header p {
   display: inline-block;
   text-align: center;
-  margin-bottom: 5px;
+  margin-bottom: 0;
 }
 
-#sort {
-  font-size: larger;
-  font-weight: 100;
-  padding-right: 1rem;
+#sort_button {
+  width: 100%;
+  height: fit-content;
+  padding: 0.1rem 1rem;
+  margin: 0 0 0.5rem 0;
+  background-color: unset;
 }
 
-#sort_category {
-  font-weight: 500;
-  font-size: x-large;
-  color: lightgrey;
+#sort_button:hover {
+  background-color: #662553;
+  border-color: #662553;
 }
 
-#sort_category:hover {
-  color: whitesmoke;
+#sort_button:focus {
+  outline-color: unset;
+  outline-style: unset;
+  background-color: #7e2563;
+  border-color: #7e2563;
+  box-shadow: unset;
   transition-duration: 0.5s;
 }
 
 .dropdown-menu {
+  width: 90%;
+  position: relative;
   background-color: #282b2e;
   color: whitesmoke;
 }
@@ -79,19 +86,46 @@ nav {
   transition-duration: 0.5s;
 }
 
+#sort {
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+#searchbox {
+  width: 100%;
+  height: fit-content;
+  color: whitesmoke;
+  text-align: center;
+  border: 0;
+  border-bottom: 2px solid gray;
+  background-color: #33373a;
+  padding: 0.1rem 1rem;
+  margin: 0 0 0.5rem 0;
+}
+
+#add_author {
+  width: 100%;
+  height: fit-content;
+  padding: 0.1rem 1rem;
+  margin: 0 0 0.5rem 0;
+}
+
+#searchbox:focus {
+  border-bottom: 2px solid #7e2563;
+  outline-color: unset;
+  outline-style: unset;
+  transition-duration: 0.5s;
+}
+
 hr {
   border: 5px solid #c700389c;
   border-radius: 0.25rem;
-  margin: 0;
+  margin: 0.5rem 0;
 }
 
 .table-dark.table-striped tbody tr:hover {
   background-color: #900c3f2f;
   transition-duration: 0.5s;
-}
-
-.table-dark {
-  margin-top: 40px;
 }
 
 .table-dark td {
@@ -105,4 +139,54 @@ td:nth-child(1) {
 
 .table-dark td:nth-child(5) {
   text-align: right;
+}
+
+#record_container > div {
+  padding: 1rem;
+}
+
+.record {
+  border: dotted 1px #c700389c;
+  /* background-color: dimgray; */
+  border-radius: 0.25rem;
+  padding: 1em;
+  margin: 0;
+}
+
+.record:first-child {
+  text-align: center;
+}
+
+.record button {
+  margin: 0;
+  margin-top: 1rem;
+  width: calc(100% / 2 - 1rem);
+}
+
+.record button.left {
+  margin-right: 0.5rem;
+  width: calc(100% / 2 - 0.5rem);
+}
+.record button.right {
+  margin-left: 0.5rem;
+  width: calc(100% / 2 - 0.5rem);
+}
+
+.image {
+  text-align: center;
+}
+
+.image img {
+  height: 15rem;
+}
+
+footer {
+  display: flex;
+  background-color: #581845;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  color: gray;
+  text-align: center;
 }
