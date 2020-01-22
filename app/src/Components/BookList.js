@@ -230,10 +230,7 @@ export default class BookList extends React.Component {
                   {book.title}
                 </div>
                 <div className="image col-12 col-sm-auto">
-                  <img
-                    src="https://www.film.gildia.pl/_n_/literatura/tworcy/andrzej_sapkowski/pani_jeziora/okladka-200.jpg"
-                    alt="Book"
-                  ></img>
+                  <img src={book.imageUrl} alt="Book"></img>
                 </div>
                 <div className="col-12 col-sm">
                   {book.authors.map(author => (
