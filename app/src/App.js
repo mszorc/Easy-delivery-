@@ -6,7 +6,6 @@ import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap.js";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
-import Footer from "./Components/Footer";
 
 function App() {
   return (
@@ -23,7 +22,6 @@ function App() {
           </Switch>
         </div>
       </div>
-      {/* <Footer /> */}
     </Router>
   );
 }
