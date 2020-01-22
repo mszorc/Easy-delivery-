@@ -221,13 +221,13 @@ export default class BookList extends React.Component {
           </div>
         </div>
         <hr />
-        <div className="row justify-content-around" id="record_container">
+        <div className="row justify-content-start" id="record_container">
           {this.state.data.map(book => (
             <div className="container col-12 col-md-6 col-lg-4" key={book.id}>
               <div className="record row">
-                <div className="col-12">
-                  {book.id}
-                  {book.title}
+                <div className="col-12 row">
+                  <div className="record_id col-2">#{book.id}</div>
+                  <div className="record_name col-auto">{book.title}</div>
                 </div>
                 <div className="image col-12 col-sm-auto">
                   <img src={book.imageUrl} alt="Book"></img>
