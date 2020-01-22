@@ -223,7 +223,7 @@ export default class BookList extends React.Component {
         <hr />
         <div className="row justify-content-start" id="record_container">
           {this.state.data.map(book => (
-            <div className="container col-12 col-md-6 col-lg-4" key={book.id}>
+            <div className="container col-12 col-lg-6" key={book.id}>
               <div className="record row">
                 <div className="col-12 row">
                   <div className="record_id col-2">#{book.id}</div>
@@ -234,10 +234,10 @@ export default class BookList extends React.Component {
                 </div>
                 <div className="col-12 col-sm">
                   {book.authors.map(author => (
-                    <li key={author.id}>
-                      {author.firstName}
+                    <p className="book_list" key={author.id}>
+                      <span>{author.firstName} </span>
                       {author.lastName}
-                    </li>
+                    </p>
                   ))}
                 </div>
                 <div className="buttons col-12">

@@ -243,9 +243,9 @@ export default class AuthorList extends React.Component {
           </div>
         </div>
         <hr />
-        <div className="row justify-content-around" id="record_container">
+        <div className="row justify-content-start" id="record_container">
           {this.state.data.map(author => (
-            <div className="container col-12 col-md-6 col-lg-4" key={author.id}>
+            <div className="container col-12 col-lg-6" key={author.id}>
               <div className="record row">
                 <div className="col-12 row">
                   <div className="record_id col-2">#{author.id}</div>
@@ -253,13 +253,16 @@ export default class AuthorList extends React.Component {
                   <div className="record_surname col-auto">
                     {author.lastName}
                   </div>
+                  <div className="record_name col-auto align-self-end">
+                    {author.dateOfBirth}
+                  </div>
                 </div>
                 <div className="image col-12 col-sm-auto">
                   <img src={author.imageUrl} alt="Author"></img>
                 </div>
                 <div className="col-12 col-sm">
                   {author.books.map(book => (
-                    <p className="book_list" key={book.id}>
+                    <p className="book_list mb-3" key={book.id}>
                       {book.title}
                     </p>
                   ))}
