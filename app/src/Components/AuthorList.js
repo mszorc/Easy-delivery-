@@ -25,6 +25,8 @@ export default class AuthorList extends React.Component {
     this.AddToArray = AddToArray.bind(this);
     this.EditInArray = EditInArray.bind(this);
     this.initialState = this.state;
+
+    this.sort_setting = "Sort by: Id (asc)";
   }
 
   async componentDidMount() {
@@ -69,6 +71,23 @@ export default class AuthorList extends React.Component {
         : "asc"
       : "desc";
     const sortedData = this.state.data.sort((a, b) => {
+      this.sort_setting = "Sort by: ";
+      switch (column) {
+        case "firstName":
+          this.sort_setting += "First name";
+          break;
+        case "lastName":
+          this.sort_setting += "Last name";
+          break;
+        case "dateOfBirth":
+          this.sort_setting += "Date of birth";
+          break;
+        case "id":
+          this.sort_setting += "Id";
+          break;
+        default:
+          break;
+      }
       if (
         column === "firstName" ||
         column === "lastName" ||
@@ -106,6 +125,9 @@ export default class AuthorList extends React.Component {
 
     if (direction === "desc") {
       sortedData.reverse();
+      this.sort_setting += " (desc)";
+    } else {
+      this.sort_setting += " (asc)";
     }
 
     this.setState({
@@ -169,25 +191,20 @@ export default class AuthorList extends React.Component {
     this.prepareData();
     return (
       <>
-        <Button variant="primary" onClick={() => this.setShowModal(-1)}>
-          Add author
-        </Button>
-        <AddAuthorForm
-          show={this.state.showModal === "modal" + -1}
-          onHide={() => this.setShowModal(0)}
-        />
-        <input
-          value={this.state.search}
-          onChange={this.handleChange}
-          placeholder="Search"
-        />
-
         <div className="container" id="header">
           <div className="row justify-content-md-around">
             <div className="col-12 col-md-3 order-md-1">
-              <Button id="add_author" variant="primary">
+              <Button
+                id="add_author"
+                variant="primary"
+                onClick={() => this.setShowModal(-1)}
+              >
                 Add author
               </Button>
+              <AddAuthorForm
+                show={this.state.showModal === "modal" + -1}
+                onHide={() => this.setShowModal(0)}
+              />
             </div>
             <div className="col-12 col-md-3 order-md-2">
               <div id="sort">
@@ -198,12 +215,18 @@ export default class AuthorList extends React.Component {
                   aria-haspopup="true"
                   aria-expanded="false"
                 >
-                  Sort by:
+                  {this.sort_setting}
                 </Button>
                 <div className="dropdown-menu">
-                  <p id="id">Id (default)</p>
-                  <p id="first_name">First name</p>
-                  <p id="last_name">Last name</p>
+                  <p id="id" onClick={this.onSort("id")}>
+                    Id (default)
+                  </p>
+                  <p id="first_name" onClick={this.onSort("firstName")}>
+                    First name
+                  </p>
+                  <p id="last_name" onClick={this.onSort("lastName")}>
+                    Last name
+                  </p>
                 </div>
               </div>
             </div>
@@ -211,6 +234,8 @@ export default class AuthorList extends React.Component {
               <input
                 id="searchbox"
                 type="text"
+                value={this.state.search}
+                onChange={this.handleChange}
                 placeholder="Filter"
                 aria-label="Filter"
               />
