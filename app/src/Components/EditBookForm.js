@@ -130,30 +130,29 @@ export class EditBookForm extends React.Component {
         </Modal.Header>
         <Modal.Body>
           <form onSubmit={this.submitHandler} className="inputForm">
-            <div className="form-group">
-              <label>Title </label>
-              <input
-                type="text"
-                name="title"
-                value={this.state.title}
-                onChange={this.changeHandler}
-              />
-            </div>
+            <div className="form-group list-group-item">
+              <div classname="form-group">
+                <label>Title </label>
+                <input
+                  type="text"
+                  name="title"
+                  className="form-control"
+                  value={this.state.title}
+                  onChange={this.changeHandler}
+                />
+                <label>Image url</label>
+                <input
+                  type="text"
+                  name="imageUrl"
+                  className="form-control"
+                  value={this.state.imageUrl}
+                  onChange={this.changeHandler}
+                />
 
-            <div className="form-group">
-              <label>Image url</label>
-              <input
-                type="text"
-                name="imageUrl"
-                value={this.state.imageUrl}
-                onChange={this.changeHandler}
-              />
-            </div>
-
-            <div className="form-group">
-              <button type="submit" className="btn btn-primary">
-                Save
-              </button>
+                <button type="submit" className="btn btn-primary mt-2">
+                  Save
+                </button>
+              </div>
             </div>
           </form>
         </Modal.Body>

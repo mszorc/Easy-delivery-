@@ -227,6 +227,9 @@ export default class AuthorList extends React.Component {
                   <p id="last_name" onClick={this.onSort("lastName")}>
                     Last name
                   </p>
+                  <p id="date_of_birth" onClick={this.onSort("dateOfBirth")}>
+                    Date of birth
+                  </p>
                 </div>
               </div>
             </div>
