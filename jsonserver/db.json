@@ -41,14 +41,9 @@
       "id": 9
     },
     {
-      "bookId": 2,
-      "authorId": 2,
-      "id": 10
-    },
-    {
       "bookId": 3,
       "authorId": 2,
-      "id": 11
+      "id": 10
     }
   ]
 }
